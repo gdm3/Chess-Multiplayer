@@ -14,11 +14,17 @@ class Pawn:
       piece_diag_right = board[self.position[0] + 1][self.position[1] + 1]
 
       if type(piece_diag_left) != Tile:
-        if piece_diag_left.color != 'b':
-          valid_moves.append(coords_to_move((self.position[0] + 1, self.position[1] - 1)))
+        try:
+          if piece_diag_left.color != 'b':
+            valid_moves.append(coords_to_move((self.position[0] + 1, self.position[1] - 1)))
+        except KeyError: # On the edge of the board
+          print('Piece is on the left edge of the board')
       if type(piece_diag_right) != Tile:
-        if piece_diag_right.color != 'b':
-          valid_moves.append(coords_to_move((self.position[0] + 1, self.position[1] + 1)))
+        try:
+          if piece_diag_right.color != 'b':
+            valid_moves.append(coords_to_move((self.position[0] + 1, self.position[1] + 1)))
+        except KeyError: # On the edge of the board
+          print('Piece is on the right edge of the board')
       # Check if piece ahead is blocked
       piece_ahead = board[self.position[0] + 1][self.position[1]]
       piece_ahead_2 = board[self.position[0] + 2][self.position[1]]
@@ -61,9 +67,18 @@ class Rook:
     self.color = color # b or w
     self.piece = "r"
   def get_valid_moves(self, board):
-    
+    valid_moves = []
     if self.color == 'b':
-      pass
+      # Loop thtrough tiles vertically, up first
+      if self.position[0] != 0:
+        for i in range(self.position[0] - 1, 0, -1):
+          # If tile is empty, add it to valid moves
+          if type(board[i][self.position[1]]) == Tile:
+            valid_moves.append(coords_to_move((i, self.position[1])))
+          # Else, check if tile is occupied by a piece of the opposite color and break
+          elif board[i][self.position[1]].color == 'w':
+            valid_moves.append(coords_to_move((i, self.position[1])))
+            break
       
 class Bishop:
   def __init__(self, position, color):
