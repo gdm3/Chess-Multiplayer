@@ -27,7 +27,10 @@ class Pawn:
           print('Piece is on the right edge of the board')
       # Check if piece ahead is blocked
       piece_ahead = board[self.position[0] + 1][self.position[1]]
-      piece_ahead_2 = board[self.position[0] + 2][self.position[1]]
+      try:
+        piece_ahead_2 = board[self.position[0] + 2][self.position[1]]
+      except IndexError: # On the edge of the board
+        print('Piece is on the edge of the board vertically') 
       if type(piece_ahead) != Tile:
         pass
       else: 
@@ -43,14 +46,23 @@ class Pawn:
       piece_diag_right = board[self.position[0] - 1][self.position[1] + 1]
 
       if type(piece_diag_left) != Tile:
-        if piece_diag_left.color != 'w':
-          valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] - 1)))
+        try:
+          if piece_diag_left.color != 'w':
+            valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] - 1)))
+        except KeyError: # On the edge of the board
+          print('Piece is on the left edge of the board')
       if type(piece_diag_right) != Tile:
-        if piece_diag_right.color != 'w':
-          valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] + 1))) 
+        try:
+          if piece_diag_right.color != 'w':
+            valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] + 1))) 
+        except KeyError: # On the edge of the board
+          print('Piece is on the right edge of the board')
       # Check if piece ahead is blocked
       piece_ahead = board[self.position[0] - 1][self.position[1]]
-      piece_ahead_2 = board[self.position[0] - 2][self.position[1]]
+      try:
+        piece_ahead_2 = board[self.position[0] - 2][self.position[1]]
+      except IndexError: # On the edge of the board
+        print('Piece is on the edge of the board vertically')
       if type(piece_ahead) != Tile:
         pass
       else: 

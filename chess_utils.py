@@ -12,7 +12,7 @@ def create_board():
     [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
     [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
     [Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile(), Tile()],
-    [Pawn((6, 0), 'w'), Pawn((6, 1), 'w'), Pawn((6, 2), 'w'), Pawn((6, 3), 'w'), Pawn((6, 4), 'w'), Pawn((6, 5), 'w'), Pawn((6, 6), 'w'), Pawn((6, 7), 'w')],
+    [Pawn((6, 0), 'b'), Pawn((6, 1), 'w'), Pawn((6, 2), 'w'), Pawn((6, 3), 'w'), Pawn((6, 4), 'w'), Pawn((6, 5), 'w'), Pawn((6, 6), 'w'), Pawn((6, 7), 'w')],
     [Rook((7, 0), 'w'), Knight((7, 1), 'w'), Bishop((7, 2), 'w'), Queen((7, 3), 'w'), King((7, 4), 'w'), Bishop((7, 5), 'w'), Knight((7, 6), 'w'), Rook((7, 7), 'w')]
   ]
 
@@ -25,3 +25,4 @@ def debug_board(board):
         print("_", end='')
       else:
         print(tile.piece, end='')
+  print('')
