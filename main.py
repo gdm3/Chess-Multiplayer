@@ -19,8 +19,6 @@ def index():
     source_letter = source[0]
     source_number = source[1]
 
-    
-    
     results = {'processed': board.validate_move((source_letter, int(source_number)), (target_letter, int(target_number)))}
     return jsonify(results)
 
