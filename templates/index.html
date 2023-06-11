@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Chess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="description" content="Chess">
+    <meta name="keywords" content="Chess Online Free">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- add stylesheet via CDN: -->
+    <link rel="stylesheet"
+      href="https://unpkg.com/@chrisoakman/chessboard2@0.4.0/dist/chessboard2.min.css"
+      integrity="sha384-MZONbGYADvdl4hLalNF4d+E/6BVdYIty2eSgtkCbjG7iQJAe35a7ujTk1roZIdJ+"
+      crossorigin="anonymous">
+
+    <!-- add JS via CDN: -->
+    <script src="https://unpkg.com/@chrisoakman/chessboard2@0.4.0/dist/chessboard2.min.js"
+        integrity="sha384-zl6zz0W4cEX3M2j9+bQ2hv9af6SF5pTFrnm/blYYjBmqSS3tdJChVrY9nenhLyNg"
+        crossorigin="anonymous"></script>
+    
+    <div class="chessboard">
+      <div id="board"></div> 
+    </div>
+    <script type=text/javascript src="{{
+  url_for('static', filename='js/script.js')
+}}"></script>
+  </body>
+</html>

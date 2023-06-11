@@ -1,0 +1,10 @@
+.chessboard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+}
+#board{
+  height: 500px;
+  width: 500px;
+}
