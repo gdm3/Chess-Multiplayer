@@ -83,7 +83,7 @@ class Rook:
     if self.color == 'b':
       # Loop thtrough tiles vertically, up first
       if self.position[0] != 0:
-        for i in range(self.position[0] - 1, 0, -1):
+        for i in range(self.position[0] - 1, -1, -1):
           # If tile is empty, add it to valid moves
           if type(board[i][self.position[1]]) == Tile:
             valid_moves.append(coords_to_move((i, self.position[1])))
@@ -91,6 +91,37 @@ class Rook:
           elif board[i][self.position[1]].color == 'w':
             valid_moves.append(coords_to_move((i, self.position[1])))
             break
+      # Down
+      if self.position[0] != 7:
+        for i in range(self.position[0] + 1, 8, 1):
+          # If tile is empty, add it to valid moves
+          if type(board[i][self.position[1]]) == Tile:
+            valid_moves.append(coords_to_move((i, self.position[1])))
+          # Else, check if tile is occupied by a piece of the opposite color and break
+          elif board[i][self.position[1]].color == 'w':
+            valid_moves.append(coords_to_move((i, self.position[1])))
+            break
+      # Left
+      if self.position[1] != 0:
+        for i in range(self.position[1] - 1, -1, -1):
+          # If tile is empty, add it to valid moves
+          if type(board[self.position[0]][i]) == Tile:
+            valid_moves.append(coords_to_move((self.position[0], i)))
+          # Else, check if tile is occupied by a piece of the opposite color and break
+          elif board[self.position[0]][i].color == 'w':
+            valid_moves.append(coords_to_move((self.position[0], i)))
+            break
+      # Right
+      if self.position[1] != 7:
+        for i in range(self.position[1] + 1, 8, 1):
+          # If tile is empty, add it to valid moves
+          if type(board[self.position[0]][i]) == Tile:
+            valid_moves.append(coords_to_move((self.position[0], i)))
+          # Else, check if tile is occupied by a piece of the opposite color and break
+          elif board[self.position[0]][i].color == 'w':
+            valid_moves.append(coords_to_move((self.position[0], i)))
+            break
+      return valid_moves
       
 class Bishop:
   def __init__(self, position, color):
