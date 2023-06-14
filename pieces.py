@@ -128,28 +128,55 @@ class Rook:
     return valid_moves
     
 class Bishop:
-def __init__(self, position, color):
-  self.position = position
-  self.color = color # b or w
-  self.piece = "b"
-def get_valid_moves(self,board):
-  # Same princaple as rook, but diagonally
-  valid_moves = []
-  color_to_check = 'w' if self.color == 'b' else 'b'
-  # Up left
-  if self.position[0] != 0 and self.position[1] != 0:
-    # Loop up than left
-    for i, j in zip(range(self.position[0] - 1, -1, -1), range(self.position[1] - 1, -1, -1)):
-      print(i, j)
-      print(board[i][j])
-      # If tile is empty, add it to valid moves
-      if type(board[i][j]) == Tile:
-        valid_moves.append(coords_to_move((i, j)))
-      # Else, check if tile is occupied by a piece of the opposite color and break
-      else:
-        if board[j][i].color == color_to_check:
+  def __init__(self, position, color):
+    self.position = position
+    self.color = color # b or w
+    self.piece = "b"
+  def get_valid_moves(self,board):
+    # Same princaple as rook, but diagonally
+    valid_moves = []
+    color_to_check = 'w' if self.color == 'b' else 'b'
+    # Up left
+    if self.position[0] != 0 and self.position[1] != 0:
+      # Loop up than left
+      for i, j in zip(range(self.position[0] - 1, -1, -1), range(self.position[1] - 1, -1, -1)):
+        # If tile is empty, add it to valid moves
+        if type(board[i][j]) == Tile:
           valid_moves.append(coords_to_move((i, j)))
-      break
+        # Else, check if tile is occupied by a piece of the opposite color and break
+        else:
+          if board[i][j].color == color_to_check:
+            valid_moves.append(coords_to_move((i, j)))
+          break
+    # Up right
+    if self.position[0] != 0 and self.position[1] != 7:
+      for i, j in zip(range(self.position[0] - 1, -1, -1), range(self.position[1] + 1, 8, 1)):
+        if type(board[i][j]) == Tile:
+          valid_moves.append(coords_to_move((i, j)))
+        else:
+          if board[i][j].color == color_to_check:
+            valid_moves.append(coords_to_move((i, j)))
+          break
+    # Down left
+    if self.position[0] != 7 and self.position[1] != 0:
+      for i, j in zip(range(self.position[0] + 1, 8, 1), range(self.position[1] - 1, -1, -1)):
+        print(i, j)
+        if type(board[i][j]) == Tile:
+          valid_moves.append(coords_to_move((i, j)))
+        else:
+          if board[i][j].color == color_to_check:
+            valid_moves.append(coords_to_move((i, j)))
+          break
+    # Down right
+    if self.position[0] != 7 and self.position[1] != 7:
+      for i, j in zip(range(self.position[0] + 1, 8, 1), range(self.position[1] + 1, 8, 1)):
+        if type(board[i][j]) == Tile:
+          valid_moves.append(coords_to_move((i, j)))
+        else:
+          if board[i][j].color == color_to_check:
+            valid_moves.append(coords_to_move((i, j)))
+          break
+        
     return valid_moves
       
 class Knight:
