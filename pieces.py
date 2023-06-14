@@ -91,10 +91,8 @@ class Rook:
     # Down
     if self.position[0] != 7:
       for i in range(self.position[0] + 1, 8, 1):
-        # If tile is empty, add it to valid moves
         if type(board[i][self.position[1]]) == Tile:
           valid_moves.append(coords_to_move((i, self.position[1])))
-        # Else, check if tile is occupied by a piece of the opposite color and break
         else:
           if board[i][self.position[1]].color == color_to_check:
             valid_moves.append(coords_to_move((i, self.position[1])))
@@ -102,10 +100,8 @@ class Rook:
     # Left
     if self.position[1] != 0:
       for i in range(self.position[1] - 1, -1, -1):
-        # If tile is empty, add it to valid moves
         if type(board[self.position[0]][i]) == Tile:
           valid_moves.append(coords_to_move((self.position[0], i)))
-        # Else, check if tile is occupied by a piece of the opposite color and break
         else:
           if board[self.position[0]][i].color == color_to_check:
             valid_moves.append(coords_to_move((self.position[0], i)))
@@ -113,10 +109,8 @@ class Rook:
     # Right
     if self.position[1] != 7:
       for i in range(self.position[1] + 1, 8, 1):
-        # If tile is empty, add it to valid moves
         if type(board[self.position[0]][i]) == Tile:
           valid_moves.append(coords_to_move((self.position[0], i)))
-        # Else, check if tile is occupied by a piece of the opposite color and break
         else:
           if board[self.position[0]][i].color == color_to_check:
             valid_moves.append(coords_to_move((self.position[0], i)))
