@@ -9,7 +9,7 @@ class Pawn:
   def get_valid_moves(self, board):
     valid_moves = []
     if self.color == 'b':
-      # Check if pieces are diagonl, if so add them to valid mvoes
+      # Check if pieces are diagonl, if so add them to valid moves
       piece_diag_left = board[self.position[0] + 1][self.position[1] - 1]
       piece_diag_right = board[self.position[0] + 1][self.position[1] + 1]
 
@@ -41,33 +41,29 @@ class Pawn:
 
     # Same thing again, for white
     elif self.color == 'w':
-      # Check if pieces are diagonl, if so add them to valid mvoes
       piece_diag_left = board[self.position[0] - 1][self.position[1] - 1]
       piece_diag_right = board[self.position[0] - 1][self.position[1] + 1]
-
       if type(piece_diag_left) != Tile:
         try:
           if piece_diag_left.color != 'w':
             valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] - 1)))
-        except KeyError: # On the edge of the board
+        except KeyError: 
           print('Piece is on the left edge of the board')
       if type(piece_diag_right) != Tile:
         try:
           if piece_diag_right.color != 'w':
             valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1] + 1))) 
-        except KeyError: # On the edge of the board
+        except KeyError:
           print('Piece is on the right edge of the board')
-      # Check if piece ahead is blocked
       piece_ahead = board[self.position[0] - 1][self.position[1]]
       try:
         piece_ahead_2 = board[self.position[0] - 2][self.position[1]]
-      except IndexError: # On the edge of the board
+      except IndexError:
         print('Piece is on the edge of the board vertically')
       if type(piece_ahead) != Tile:
         pass
       else: 
         valid_moves.append(coords_to_move((self.position[0] - 1, self.position[1])))
-        # Check if piece is on 2th rank
         if self.position[0] == 6 and type(piece_ahead_2) == Tile:
           valid_moves.append(coords_to_move((self.position[0] - 2, self.position[1])))
     return valid_moves
